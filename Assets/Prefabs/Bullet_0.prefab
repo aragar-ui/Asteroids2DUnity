@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2208703988740019828, guid: 4e37f6486c04b2c45a90ac4377144b11, type: 3}
-  m_Color: {r: 0.9685534, g: 0.04568636, b: 0.04568636, a: 1}
+  m_Color: {r: 0.0091467695, g: 0.7484276, b: 0.0023533881, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   speed: 10
-  maxLifetime: 5
+  maxLifetime: 2.5
   targetVector: {x: 1, y: 0, z: 0}
 --- !u!65 &-4298696662313673718
 BoxCollider:

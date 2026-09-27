@@ -3,22 +3,30 @@ using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour
 {
-
     public float speed = 10f;
-    public float maxLifetime = 5f;
+    public float maxLifetime = 2.5f;
     public Vector3 targetVector;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Destroy(gameObject, maxLifetime);
+    // Temporizador propio para medir el tiempo de vida
+    private float timer;
 
+    // Se ejecuta CADA VEZ que la bala se reactiva desde el pool
+    private void OnEnable()
+    {
+        timer = 0f; // Reiniciamos el reloj cada vez que se dispara
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(speed * targetVector * Time.deltaTime);
+
+        // Contamos el tiempo y la apagamos al expirar (en lugar de Destroy)
+        timer += Time.deltaTime;
+        if (timer >= maxLifetime)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,7 +35,9 @@ public class Bullet : MonoBehaviour
         {
             IncreaseScore();
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+
+            // En lugar de Destroy(gameObject), la desactivamos
+            gameObject.SetActive(false);
         }
     }
 
